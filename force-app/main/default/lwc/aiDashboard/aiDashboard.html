@@ -1,0 +1,204 @@
+<template>
+
+	<!-- ==========================================================
+         Dashboard Card
+         ========================================================== -->
+	<lightning-card title="AI Dashboard Generator" icon-name="utility:dashboard">
+
+		<div class="slds-p-around_medium">
+
+			<!-- ==================================================
+                 Step 1 : JSON Input
+                 User pastes JSON here
+                 ================================================== -->
+
+			<lightning-textarea label="Paste Dashboard JSON" value={jsonInput} onchange={handleJsonChange} rows="15">
+			</lightning-textarea>
+
+			<br />
+
+			<!-- Generate Button -->
+
+			<lightning-button variant="brand" label="Generate Dashboard" onclick={generateDashboard}>
+			</lightning-button>
+
+		</div>
+
+	</lightning-card>
+
+
+	<!-- ==========================================================
+         Dashboard
+         Show only after JSON is parsed
+         ========================================================== -->
+
+	<template if:true={dashboard}>
+
+
+		<!-- ================================================
+             Dashboard Header
+             ================================================ -->
+
+		<lightning-card title={dashboard.dashboard.title} icon-name="standard:account">
+
+			<div class="slds-p-around_medium">
+
+				<div class="slds-grid slds-wrap">
+
+					<!-- Loan -->
+
+					<div class="slds-col slds-size_1-of-3">
+						<b>Loan</b><br />
+						{dashboard.dashboard.loan}
+					</div>
+
+					<!-- Customer -->
+
+					<div class="slds-col slds-size_1-of-3">
+						<b>Customer</b><br />
+						{dashboard.dashboard.customer}
+					</div>
+
+					<!-- Generated Time -->
+
+					<div class="slds-col slds-size_1-of-3">
+						<b>Generated</b><br />
+						{dashboard.dashboard.generated}
+					</div>
+
+				</div>
+
+			</div>
+
+		</lightning-card>
+
+		<br />
+
+
+		<!-- =====================================================
+             Loop through every Widget
+             ===================================================== -->
+
+		<template for:each={dashboard.widgets} for:item="widget">
+
+			<lightning-card key={widget.title} title={widget.title}>
+
+				<div class="slds-p-around_medium">
+
+					<!-- ==========================================
+                         KPI GROUP
+                         ========================================== -->
+
+					<template if:true={widget.isKPI}>
+
+						<div class="slds-grid slds-wrap">
+
+							<template for:each={widget.items} for:item="item">
+
+								<div key={item.label} class="slds-col slds-size_1-of-4">
+
+									<div class="kpiBox">
+
+										<div class="kpiLabel">
+											{item.label}
+										</div>
+
+										<div class="kpiValue">
+											{item.value}
+										</div>
+
+									</div>
+
+								</div>
+
+							</template>
+
+						</div>
+
+					</template>
+
+
+					<!-- ==========================================
+                         Chart Widget
+                         Child Component
+                         ========================================== -->
+
+					<template if:true={widget.isChart}>
+
+						<c-chart-renderer widget={widget}>
+						</c-chart-renderer>
+
+					</template>
+
+
+
+					<!-- ==========================================
+                         Table Widget
+                         Child Component
+                         ========================================== -->
+
+					<template if:true={widget.isTable}>
+
+						<c-table-renderer widget={widget}>
+						</c-table-renderer>
+
+					</template>
+
+
+
+					<!-- ==========================================
+                         List Widget
+                         ========================================== -->
+
+					<template if:true={widget.isList}>
+
+						<ul>
+
+							<template for:each={widget.items} for:item="row">
+
+								<li key={row}>
+									{row}
+									{row.label}
+								</li>
+
+							</template>
+
+						</ul>
+
+					</template>
+
+
+
+					<!-- ==========================================
+                         Progress Widget
+                         (Coming in Part 4)
+                         ========================================== -->
+
+					<!-- <template if:true={widget.isProgress}>
+
+						<c-progress-renderer widget={widget}>
+						</c-progress-renderer>
+
+					</template> -->
+
+					<!-- ==========================================
+                         Timeline Widget
+                         (Coming in Part 4)
+                         ========================================== -->
+
+					<!-- <template if:true={widget.isTimeline}>
+
+						<c-timeline-renderer widget={widget}>
+						</c-timeline-renderer>
+
+					</template> -->
+
+				</div>
+
+			</lightning-card>
+
+		</template>
+
+	</template>
+
+</template>

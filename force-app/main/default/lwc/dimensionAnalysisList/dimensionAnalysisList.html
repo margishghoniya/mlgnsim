@@ -1,0 +1,64 @@
+<!--
+  @description       :
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             :
+  @last modified on  : 08-06-2026
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+	<lightning-card title="Dimension Analysis" icon-name="utility:einstein">
+		<lightning-button slot="actions" label="Refresh" icon-name="utility:refresh" onclick={handleRetry}></lightning-button>
+
+		<div class="slds-p-horizontal_medium slds-p-bottom_medium">
+
+			<!-- Loading state -->
+			<template if:true={isLoading}>
+				<div class="slds-align_absolute-center slds-p-vertical_large">
+					<lightning-spinner alternative-text="Loading AI analysis" size="small"></lightning-spinner>
+				</div>
+			</template>
+
+			<!-- Error state -->
+			<template if:true={hasError}>
+				<div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_error" role="alert">
+					<span class="slds-assistive-text">Error</span>
+					<h2>{errorMessage}</h2>
+				</div>
+				<div class="slds-p-top_small">
+					<lightning-button label="Try Again" onclick={handleRetry}></lightning-button>
+				</div>
+			</template>
+
+			<!-- Empty state -->
+			<template if:true={isEmpty}>
+				<p class="slds-text-body_regular slds-text-color_weak slds-p-vertical_medium">
+					No analysis available for this case yet.
+				</p>
+			</template>
+
+			<!-- Populated state -->
+			<template if:true={hasDimensions}>
+				<template for:each={dimensions} for:item="dim">
+					<div key={dim.key} class="dimension-row">
+						<div class="dimension-row-header" data-label={dim.key} onclick={handleRowToggle}>
+							<div class="dimension-label">{dim.label}</div>
+							<div class={dim.badgeClass}>{dim.riskLevel}</div>
+							<div class="dimension-bar-track">
+								<!-- <div class={dim.barClass} style={dim.barStyle}></div> -->
+							</div>
+							<div class="dimension-confidence">{dim.confidenceLabel}</div>
+							<lightning-icon icon-name="utility:chevronright" size="x-small" class={dim.chevronClass}></lightning-icon>
+						</div>
+
+						<template if:true={dim.isExpanded}>
+							<div class="dimension-detail">
+								<p>{dim.explanation}</p>
+							</div>
+						</template>
+					</div>
+				</template>
+			</template>
+
+		</div>
+	</lightning-card>
+</template>

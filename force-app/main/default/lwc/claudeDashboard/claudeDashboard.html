@@ -1,0 +1,47 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 07-26-2026
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+    <lightning-card title="Claude AI Dashboard" icon-name="utility:dashboard">
+        <div class="slds-p-around_medium">
+
+            <c-dashboard-header ongenerate={handleGenerate}>
+            </c-dashboard-header>
+
+            <template if:true={isLoading}>
+                <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+            </template>
+
+            <template if:true={dashboard}>
+
+                <c-dashboard-summary dashboard={dashboard}>
+                </c-dashboard-summary>
+
+                <c-dashboard-kpi dashboard={dashboard}>
+                </c-dashboard-kpi>
+
+                <c-dashboard-charts charts={dashboard.charts}>
+                </c-dashboard-charts>
+
+                <c-dashboard-table records={dashboard.records}>
+                </c-dashboard-table>
+
+            </template>
+
+            <template if:true={errorMessage}>
+    <c-dashboard-error-panel
+        message={errorMessage}
+        warnings={warnings}
+        type="error"
+        show-retry-button
+        onretry={handleRetry}>
+    </c-dashboard-error-panel>
+</template>
+
+        </div>
+    </lightning-card>
+</template>

@@ -1,0 +1,53 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 07-20-2026
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+
+    <lightning-card title="Analytics Dashboard" icon-name="utility:chart">
+
+        <div class="slds-p-around_medium">
+
+            <template if:true={hasCharts}>
+
+                <div class="chart-grid">
+
+                    <template for:each={chartList} for:item="chart">
+
+                        <div key={chart.id} class="chart-card">
+
+                            <h3 class="chart-title">
+                                {chart.title}
+                            </h3>
+
+                            <canvas
+                                class="chartCanvas"
+                                data-id={chart.id}>
+                            </canvas>
+
+                        </div>
+
+                    </template>
+
+                </div>
+
+            </template>
+
+            <template if:false={hasCharts}>
+
+                <div class="slds-text-align_center slds-p-around_large">
+
+                    No charts available.
+
+                </div>
+
+            </template>
+
+        </div>
+
+    </lightning-card>
+
+</template>

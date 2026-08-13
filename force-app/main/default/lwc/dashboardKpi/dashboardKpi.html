@@ -1,0 +1,54 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 07-20-2026
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+
+    <lightning-card title="Key Performance Indicators" icon-name="utility:chart">
+
+        <div class="slds-p-around_medium">
+
+            <div class="slds-grid slds-wrap slds-gutters">
+
+                <!-- Total Records -->
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-4">
+                    <div class="kpi-card total">
+                        <div class="kpi-value">{dashboard.totalRecords}</div>
+                        <div class="kpi-label">Total Records</div>
+                    </div>
+                </div>
+
+                <!-- Approved -->
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-4">
+                    <div class="kpi-card approved">
+                        <div class="kpi-value">{dashboard.approvedRecords}</div>
+                        <div class="kpi-label">Approved</div>
+                    </div>
+                </div>
+
+                <!-- Pending -->
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-4">
+                    <div class="kpi-card pending">
+                        <div class="kpi-value">{dashboard.pendingRecords}</div>
+                        <div class="kpi-label">Pending</div>
+                    </div>
+                </div>
+
+                <!-- Rejected -->
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-4">
+                    <div class="kpi-card rejected">
+                        <div class="kpi-value">{dashboard.rejectedRecords}</div>
+                        <div class="kpi-label">Rejected</div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </lightning-card>
+
+</template>

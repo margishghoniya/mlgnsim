@@ -1,0 +1,309 @@
+/* ==========================================================
+   progressRenderer.css
+   ----------------------------------------------------------
+   AI Dashboard Progress Renderer
+   ========================================================== */
+
+/* Host Component */
+:host{
+    display:block;
+    width:100%;
+}
+
+/* ==========================================================
+   Main Container
+   ========================================================== */
+
+.progressContainer{
+
+    display:grid;
+
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+
+    gap:18px;
+
+    margin-top:10px;
+
+}
+
+/* ==========================================================
+   Card
+   ========================================================== */
+
+.progressCard{
+
+    background:#ffffff;
+
+    border:1px solid #d8dde6;
+
+    border-radius:10px;
+
+    padding:16px;
+
+    box-shadow:0 2px 6px rgba(0,0,0,.08);
+
+    transition:.3s;
+
+}
+
+.progressCard:hover{
+
+    transform:translateY(-2px);
+
+    box-shadow:0 8px 18px rgba(0,0,0,.15);
+
+}
+
+/* ==========================================================
+   Header
+   ========================================================== */
+
+.header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:12px;
+
+}
+
+.title{
+
+    font-size:15px;
+
+    font-weight:700;
+
+    color:#16325c;
+
+}
+
+/* ==========================================================
+   Progress Background
+   ========================================================== */
+
+.progressBar{
+
+    width:100%;
+
+    height:16px;
+
+    background:#ecebea;
+
+    border-radius:25px;
+
+    overflow:hidden;
+
+}
+
+/* ==========================================================
+   Progress Fill
+   ========================================================== */
+
+.progressHigh,
+.progressGood,
+.progressMedium,
+.progressWarning,
+.progressLow{
+
+    height:100%;
+
+    border-radius:25px;
+
+    transition:width .8s ease;
+
+}
+
+/* Excellent */
+
+.progressHigh{
+
+    background:#2e844a;
+
+}
+
+/* Good */
+
+.progressGood{
+
+    background:#0176d3;
+
+}
+
+/* Average */
+
+.progressMedium{
+
+    background:#ffb75d;
+
+}
+
+/* Needs Review */
+
+.progressWarning{
+
+    background:#fe9339;
+
+}
+
+/* High Risk */
+
+.progressLow{
+
+    background:#ba0517;
+
+}
+
+/* ==========================================================
+   Text Colors
+   ========================================================== */
+
+.textHigh{
+
+    color:#2e844a;
+
+    font-weight:700;
+
+}
+
+.textGood{
+
+    color:#0176d3;
+
+    font-weight:700;
+
+}
+
+.textMedium{
+
+    color:#ff8c00;
+
+    font-weight:700;
+
+}
+
+.textWarning{
+
+    color:#e67e22;
+
+    font-weight:700;
+
+}
+
+.textLow{
+
+    color:#ba0517;
+
+    font-weight:700;
+
+}
+
+/* ==========================================================
+   Status Label
+   ========================================================== */
+
+.status{
+
+    margin-top:10px;
+
+    font-size:13px;
+
+    font-weight:600;
+
+}
+
+/* ==========================================================
+   No Data
+   ========================================================== */
+
+.noData{
+
+    padding:30px;
+
+    text-align:center;
+
+    color:#706e6b;
+
+    font-size:16px;
+
+    font-weight:600;
+
+    background:#fafaf9;
+
+    border-radius:10px;
+
+}
+
+/* ==========================================================
+   Animation
+   ========================================================== */
+
+@keyframes grow{
+
+    from{
+
+        width:0;
+
+    }
+
+    to{
+
+        width:100%;
+
+    }
+
+}
+
+.progressHigh,
+.progressGood,
+.progressMedium,
+.progressWarning,
+.progressLow{
+
+    animation:grow 1s ease;
+
+}
+
+/* ==========================================================
+   Mobile
+   ========================================================== */
+
+@media only screen and (max-width:768px){
+
+    .progressContainer{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .progressCard{
+
+        padding:12px;
+
+    }
+
+    .title{
+
+        font-size:14px;
+
+    }
+
+}
+
+@media only screen and (max-width:480px){
+
+    .progressBar{
+
+        height:12px;
+
+    }
+
+    .title{
+
+        font-size:13px;
+
+    }
+
+}

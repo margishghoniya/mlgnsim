@@ -1,0 +1,42 @@
+.kpi-card {
+    border-radius: 10px;
+    padding: 24px;
+    text-align: center;
+    color: white;
+    margin-bottom: 16px;
+    transition: all 0.3s ease;
+    cursor: default;
+    box-shadow: 0 3px 8px rgba(0,0,0,.12);
+}
+
+.kpi-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 14px rgba(0,0,0,.18);
+}
+
+.kpi-value {
+    font-size: 36px;
+    font-weight: bold;
+}
+
+.kpi-label {
+    margin-top: 10px;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.total {
+    background: #0176d3;
+}
+
+.approved {
+    background: #2e844a;
+}
+
+.pending {
+    background: #fe9339;
+}
+
+.rejected {
+    background: #ba0517;
+}

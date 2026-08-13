@@ -1,0 +1,11 @@
+:host {
+
+    display: block;
+
+}
+
+lightning-datatable {
+
+    min-height: 300px;
+
+}

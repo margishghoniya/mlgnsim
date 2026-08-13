@@ -1,0 +1,54 @@
+<template>
+
+    <!-- ==========================================================
+         Chart Renderer
+         ----------------------------------------------------------
+         This component receives one widget from the parent
+         aiDashboard component.
+
+         Example Widget:
+
+         {
+            "type":"chart",
+            "title":"Revenue Trend",
+            "chartType":"line",
+            "labels":["Jan","Feb","Mar"],
+            "series":[
+                {
+                    "name":"Revenue",
+                    "data":[120,140,180]
+                }
+            ]
+         }
+
+         JS will use this data to create Chart.js chart.
+         ========================================================== -->
+
+
+    <lightning-card title={widgetTitle} icon-name="utility:chart">
+
+        <div class="slds-p-around_medium">
+
+            <!-- ==========================================
+                 Chart Container
+
+                 Chart.js requires a canvas element.
+
+                 JS will locate this canvas and draw
+                 Line
+                 Bar
+                 Pie
+                 Doughnut
+                 Radar
+
+                 dynamically.
+
+                 ========================================== -->
+
+            <div class="chartContainer" lwc:dom="manual"></div>
+
+        </div>
+
+    </lightning-card>
+
+</template>

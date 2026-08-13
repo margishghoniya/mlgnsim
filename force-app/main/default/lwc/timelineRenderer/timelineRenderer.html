@@ -1,0 +1,168 @@
+<template>
+
+    <!-- ==========================================================
+         Timeline Renderer
+         ----------------------------------------------------------
+         Displays chronological AI processing steps
+         ========================================================== -->
+
+    <template if:true={widget}>
+
+        <div class="timelineContainer">
+
+            <template
+                for:each={timelineItems}
+                for:item="item">
+
+                <div
+                    key={item.id}
+                    class="timelineItem">
+
+                    <!-- Left Side -->
+                    <div class="timelineLeft">
+
+                        <!-- Circle -->
+
+                        <div class={item.circleClass}>
+
+                            <lightning-icon
+                                icon-name={item.icon}
+                                size="xx-small"
+                                alternative-text="Status">
+                            </lightning-icon>
+
+                        </div>
+
+                        <!-- Vertical Line -->
+
+                        <template if:false={item.isLast}>
+
+                            <div class="timelineLine"></div>
+
+                        </template>
+
+                    </div>
+
+                    <!-- Right Side -->
+
+                    <div class="timelineContent">
+
+                        <!-- Header -->
+
+                        <div class="timelineHeader">
+
+                            <div class="timelineTitle">
+
+                                {item.title}
+
+                            </div>
+
+                            <div class="timelineTime">
+
+                                {item.time}
+
+                            </div>
+
+                        </div>
+
+                        <!-- Status -->
+
+                        <div class={item.statusClass}>
+
+                            {item.status}
+
+                        </div>
+
+                        <!-- Description -->
+
+                        <template if:true={item.description}>
+
+                            <div class="timelineDescription">
+
+                                {item.description}
+
+                            </div>
+
+                        </template>
+
+                        <!-- Metrics -->
+
+                        <template if:true={item.metrics}>
+
+                            <div class="metricContainer">
+
+                                <template
+                                    for:each={item.metrics}
+                                    for:item="metric">
+
+                                    <div
+                                        key={metric.id}
+                                        class="metricBox">
+
+                                        <div class="metricLabel">
+
+                                            {metric.label}
+
+                                        </div>
+
+                                        <div class="metricValue">
+
+                                            {metric.value}
+
+                                        </div>
+
+                                    </div>
+
+                                </template>
+
+                            </div>
+
+                        </template>
+
+                        <!-- Evidence -->
+
+                        <template if:true={item.evidence}>
+
+                            <div class="evidenceContainer">
+
+                                <template
+                                    for:each={item.evidence}
+                                    for:item="doc">
+
+                                    <span
+                                        key={doc.id}
+                                        class="evidenceTag">
+
+                                        {doc.name}
+
+                                    </span>
+
+                                </template>
+
+                            </div>
+
+                        </template>
+
+                    </div>
+
+                </div>
+
+            </template>
+
+        </div>
+
+    </template>
+
+    <!-- No Data -->
+
+    <template if:true={showNoData}>
+
+        <div class="noData">
+
+            No Timeline Available
+
+        </div>
+
+    </template>
+
+</template>

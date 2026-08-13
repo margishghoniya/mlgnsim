@@ -1,0 +1,41 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 07-19-2026
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+    <lightning-card title="AI Dashboard Input" icon-name="utility:edit">
+
+        <div class="slds-p-around_medium">
+
+            <lightning-textarea
+                label="Enter Prompt"
+                value={prompt}
+                onchange={handlePromptChange}
+                placeholder="Example: Analyze loan applications and generate a risk dashboard.">
+            </lightning-textarea>
+
+            <div class="slds-m-top_medium slds-text-align_right">
+
+                <lightning-button
+                    label="Clear"
+                    variant="neutral"
+                    onclick={handleClear}>
+                </lightning-button>
+
+                <lightning-button
+                    class="slds-m-left_small"
+                    label="Generate Dashboard"
+                    variant="brand"
+                    icon-name="utility:magicwand"
+                    onclick={handleGenerate}>
+                </lightning-button>
+
+            </div>
+
+        </div>
+
+    </lightning-card>
+</template>

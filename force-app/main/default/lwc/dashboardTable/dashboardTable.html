@@ -1,0 +1,42 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 07-20-2026
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+
+    <lightning-card title="Detailed Analysis" icon-name="utility:table">
+
+        <div class="slds-p-around_medium">
+
+            <template if:true={hasRecords}>
+
+                <lightning-datatable
+                    key-field="recordId"
+                    data={records}
+                    columns={columns}
+                    hide-checkbox-column
+                    show-row-number-column
+                    sorted-by="score"
+                    sorted-direction="desc">
+                </lightning-datatable>
+
+            </template>
+
+            <template if:false={hasRecords}>
+
+                <div class="slds-align_absolute-center slds-p-around_large">
+
+                    No records available.
+
+                </div>
+
+            </template>
+
+        </div>
+
+    </lightning-card>
+
+</template>

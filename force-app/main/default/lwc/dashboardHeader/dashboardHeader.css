@@ -1,0 +1,7 @@
+:host {
+    display: block;
+}
+
+lightning-textarea {
+    width: 100%;
+}

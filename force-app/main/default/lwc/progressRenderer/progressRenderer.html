@@ -1,0 +1,95 @@
+<template>
+
+    <!-- ==========================================================
+         Progress Renderer
+         ----------------------------------------------------------
+         Displays AI Scores / Progress Bars
+         Example Widget
+
+         {
+             "type":"progress",
+             "title":"AI Confidence",
+             "items":[
+                 {
+                     "label":"Confidence",
+                     "value":92
+                 },
+                 {
+                     "label":"Risk Score",
+                     "value":68
+                 }
+             ]
+         }
+    =========================================================== -->
+
+    <template if:true={widget}>
+
+        <div class="progressContainer">
+
+            <template
+                for:each={progressItems}
+                for:item="item">
+
+                <div
+                    key={item.id}
+                    class="progressCard">
+
+                    <!-- Header -->
+
+                    <div class="header">
+
+                        <span class="title">
+
+                            {item.label}
+
+                        </span>
+
+                        <span class={item.textClass}>
+
+                            {item.value}%
+
+                        </span>
+
+                    </div>
+
+                    <!-- Progress Bar -->
+
+                    <div class="progressBar">
+
+                        <div
+                            class={item.barClass}
+                            style={item.style}>
+
+                        </div>
+
+                    </div>
+
+                    <!-- Status -->
+
+                    <div class={item.textClass}>
+
+                        {item.status}
+
+                    </div>
+
+                </div>
+
+            </template>
+
+        </div>
+
+    </template>
+
+    <!-- No Data -->
+
+    <template if:true={showNoData}>
+
+        <div class="noData">
+
+            No Progress Data Available
+
+        </div>
+
+    </template>
+
+</template>

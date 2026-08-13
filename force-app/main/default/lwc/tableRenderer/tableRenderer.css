@@ -1,0 +1,325 @@
+/* ==========================================================
+   tableRenderer.css
+   ----------------------------------------------------------
+   AI Dashboard Table Styling
+   ========================================================== */
+
+
+/* Host Component */
+
+:host{
+
+    display:block;
+
+    width:100%;
+
+}
+
+
+/* ==========================================================
+   Table Container
+   ========================================================== */
+
+.tableContainer{
+
+    width:100%;
+
+    overflow-x:auto;
+
+    border:1px solid #d8dde6;
+
+    border-radius:10px;
+
+    background:#ffffff;
+
+}
+
+
+/* ==========================================================
+   Table
+   ========================================================== */
+
+table{
+
+    width:100%;
+
+    border-collapse:collapse;
+
+    table-layout:auto;
+
+}
+
+
+/* ==========================================================
+   Header
+   ========================================================== */
+
+thead{
+
+    background:#0176D3;
+
+    position:sticky;
+
+    top:0;
+
+    z-index:5;
+
+}
+
+
+thead th{
+
+    color:#ffffff;
+
+    font-weight:700;
+
+    padding:12px;
+
+    text-align:left;
+
+    white-space:nowrap;
+
+}
+
+
+/* ==========================================================
+   Body
+   ========================================================== */
+
+tbody td{
+
+    padding:10px 12px;
+
+    border-bottom:1px solid #e5e5e5;
+
+    white-space:nowrap;
+
+    vertical-align:middle;
+
+}
+
+
+/* ==========================================================
+   Alternate Rows
+   ========================================================== */
+
+tbody tr:nth-child(even){
+
+    background:#fafafa;
+
+}
+
+
+/* ==========================================================
+   Hover
+   ========================================================== */
+
+tbody tr:hover{
+
+    background:#eef4ff;
+
+    cursor:pointer;
+
+}
+
+
+/* ==========================================================
+   Risk Badges
+   ========================================================== */
+
+.riskHigh{
+
+    background:#ba0517;
+
+    color:white;
+
+    font-weight:bold;
+
+    padding:4px 10px;
+
+    border-radius:12px;
+
+    display:inline-block;
+
+}
+
+
+.riskMedium{
+
+    background:#ffb75d;
+
+    color:#16325c;
+
+    font-weight:bold;
+
+    padding:4px 10px;
+
+    border-radius:12px;
+
+    display:inline-block;
+
+}
+
+
+.riskLow{
+
+    background:#2e844a;
+
+    color:white;
+
+    font-weight:bold;
+
+    padding:4px 10px;
+
+    border-radius:12px;
+
+    display:inline-block;
+
+}
+
+
+/* ==========================================================
+   Currency
+   ========================================================== */
+
+.currency{
+
+    text-align:right;
+
+    font-weight:600;
+
+}
+
+
+/* ==========================================================
+   Percentage
+   ========================================================== */
+
+.percent{
+
+    text-align:center;
+
+    font-weight:600;
+
+}
+
+
+/* ==========================================================
+   Number
+   ========================================================== */
+
+.number{
+
+    text-align:right;
+
+}
+
+
+/* ==========================================================
+   Text
+   ========================================================== */
+
+.text{
+
+    text-align:left;
+
+}
+
+
+/* ==========================================================
+   No Data
+   ========================================================== */
+
+.noData{
+
+    text-align:center;
+
+    padding:30px;
+
+    color:#706e6b;
+
+    font-size:16px;
+
+    font-weight:600;
+
+}
+
+
+/* ==========================================================
+   Scrollbar
+   ========================================================== */
+
+.tableContainer::-webkit-scrollbar{
+
+    height:10px;
+
+}
+
+.tableContainer::-webkit-scrollbar-track{
+
+    background:#f4f4f4;
+
+}
+
+.tableContainer::-webkit-scrollbar-thumb{
+
+    background:#b0b0b0;
+
+    border-radius:10px;
+
+}
+
+.tableContainer::-webkit-scrollbar-thumb:hover{
+
+    background:#7f7f7f;
+
+}
+
+
+/* ==========================================================
+   Responsive
+   ========================================================== */
+
+@media only screen and (max-width:1024px){
+
+    table{
+
+        font-size:13px;
+
+    }
+
+}
+
+
+@media only screen and (max-width:768px){
+
+    table{
+
+        font-size:12px;
+
+    }
+
+    thead th{
+
+        padding:8px;
+
+    }
+
+    tbody td{
+
+        padding:8px;
+
+    }
+
+}
+
+
+@media only screen and (max-width:480px){
+
+    table{
+
+        font-size:11px;
+
+    }
+
+}

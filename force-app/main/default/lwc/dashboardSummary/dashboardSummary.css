@@ -1,0 +1,43 @@
+.label {
+    font-weight: 600;
+    color: #54698d;
+    margin-bottom: 4px;
+}
+
+.value {
+    margin-bottom: 18px;
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+.recommendation {
+    color: #0176d3;
+    font-weight: 600;
+}
+
+.score-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #dddbda;
+    padding-top: 20px;
+}
+
+.score-box {
+    text-align: center;
+}
+
+.score {
+    font-size: 42px;
+    font-weight: bold;
+    color: #0176d3;
+}
+
+.score-label {
+    font-size: 14px;
+    color: #706e6b;
+}
+
+.risk-box {
+    text-align: center;
+}

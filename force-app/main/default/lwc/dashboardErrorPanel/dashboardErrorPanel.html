@@ -1,0 +1,87 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 07-20-2026
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+
+    <template if:true={showPanel}>
+
+        <lightning-card
+            title={panelTitle}
+            icon-name={panelIcon}>
+
+            <div class="slds-p-around_medium">
+
+                <div class={containerClass}>
+
+                    <lightning-icon
+                        icon-name={panelIcon}
+                        size="small"
+                        class="icon">
+                    </lightning-icon>
+
+                    <div class="content">
+
+                        <h2 class="heading">
+                            {panelTitle}
+                        </h2>
+
+                        <p class="message">
+                            {message}
+                        </p>
+
+                        <template if:true={hasWarnings}>
+
+                            <div class="warnings">
+
+                                <p class="warning-title">
+                                    Warnings
+                                </p>
+
+                                <ul>
+
+                                    <template
+                                        for:each={warnings}
+                                        for:item="warning">
+
+                                        <li key={warning}>
+                                            {warning}
+                                        </li>
+
+                                    </template>
+
+                                </ul>
+
+                            </div>
+
+                        </template>
+
+                        <template if:true={showRetryButton}>
+
+                            <div class="slds-m-top_medium">
+
+                                <lightning-button
+                                    label="Retry"
+                                    variant="brand"
+                                    icon-name="utility:refresh"
+                                    onclick={handleRetry}>
+                                </lightning-button>
+
+                            </div>
+
+                        </template>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </lightning-card>
+
+    </template>
+
+</template>

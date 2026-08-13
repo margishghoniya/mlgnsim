@@ -1,0 +1,122 @@
+<template>
+
+    <!-- ==========================================================
+         Dynamic Table Renderer
+         ----------------------------------------------------------
+         This component receives a widget object from
+         aiDashboard.
+
+         Example:
+
+         {
+            "type":"table",
+            "title":"Financial Ratios",
+            "columns":[...],
+            "rows":[...]
+         }
+    =========================================================== -->
+
+    <template if:true={widget}>
+
+        <div class="tableContainer">
+
+            <!-- ============================
+                 Table
+            ============================= -->
+
+            <table
+                class="slds-table
+                       slds-table_bordered
+                       slds-table_cell-buffer
+                       slds-table_col-bordered
+                       slds-table_fixed-layout">
+
+                <!-- ============================
+                     Header
+                ============================= -->
+
+                <thead>
+
+                    <tr>
+
+                        <template
+                            for:each={widget.columns}
+                            for:item="column">
+
+                            <th
+                                key={column}
+                                scope="col">
+
+                                <div
+                                    class="slds-truncate"
+                                    title={column}>
+
+                                    {column}
+
+                                </div>
+
+                            </th>
+
+                        </template>
+
+                    </tr>
+
+                </thead>
+
+                <!-- ============================
+                     Body
+                ============================= -->
+
+                <tbody>
+
+                    <template
+                        for:each={tableRows}
+                        for:item="row">
+
+                        <tr key={row.id}>
+
+                            <template
+                                for:each={row.cells}
+                                for:item="cell">
+
+                                <td key={cell.id}>
+
+                                    <div
+                                        class="slds-truncate"
+                                        title={cell.value}>
+
+                                        {cell.value}
+
+                                    </div>
+
+                                </td>
+
+                            </template>
+
+                        </tr>
+
+                    </template>
+
+                </tbody>
+
+            </table>
+
+            <!-- ============================
+                 No Records
+            ============================= -->
+
+            <template if:true={showNoData}>
+
+                <div class="noData">
+
+                    No Records Found
+
+                </div>
+
+            </template>
+
+        </div>
+
+    </template>
+
+</template>

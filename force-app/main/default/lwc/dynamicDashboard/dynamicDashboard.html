@@ -1,0 +1,76 @@
+<!--
+  @description       :
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             :
+  @last modified on  : 08-06-2026
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+	<lightning-card title={dashboardTitle} icon-name="utility:chart">
+
+		<div class="slds-p-horizontal_medium slds-p-bottom_medium">
+
+			<!-- Claude generation controls -->
+			<div class="slds-grid slds-gutters slds-wrap slds-p-bottom_small">
+				<div class="slds-col slds-size_1-of-1">
+					<lightning-textarea label="Prompt for Claude" value={promptInput} onchange={handlePromptChange}></lightning-textarea>
+				</div>
+				<div class="slds-col slds-size_1-of-1 slds-p-top_small">
+					<lightning-button variant="brand" label="Generate Dashboard from Claude" onclick={handleGenerateFromClaude} disabled={isLoading}></lightning-button>
+				</div>
+			</div>
+
+			<!-- Manual JSON paste (e.g. from a Claude chat) -->
+			<details class="paste-panel">
+				<summary>Or paste dashboard JSON directly</summary>
+				<div class="slds-p-top_small">
+					<lightning-textarea label="Dashboard JSON" value={jsonInput} onchange={handleJsonInputChange}></lightning-textarea>
+					<div class="slds-p-top_small">
+						<lightning-button label="Render from Pasted JSON" onclick={handleRenderFromPaste}></lightning-button>
+					</div>
+				</div>
+			</details>
+
+			<!-- Loading -->
+			<template if:true={isLoading}>
+				<div class="slds-align_absolute-center slds-p-vertical_large">
+					<lightning-spinner alternative-text="Generating dashboard" size="small"></lightning-spinner>
+				</div>
+			</template>
+
+			<!-- Error -->
+			<template if:true={hasError}>
+				<div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_error slds-m-top_small" role="alert">
+					<span class="slds-assistive-text">Error</span>
+					<h2>{errorMessage}</h2>
+				</div>
+			</template>
+
+			<!-- Dynamic widget grid -->
+			<template if:true={hasWidgets}>
+				<div class="dashboard-grid slds-m-top_medium">
+					<template for:each={widgets} for:item="widget">
+						<div key={widget.domId} class="dashboard-widget">
+							<h3 class="widget-title">{widget.title}</h3>
+
+							<template if:true={widget.isKpi}>
+								<div class="kpi-value">{widget.value}</div>
+							</template>
+
+							<template if:true={widget.unsupportedType}>
+								<p class="slds-text-color_error">{widget.unsupportedType}</p>
+							</template>
+
+							<template if:true={widget.showChart}>
+								<div class="chart-wrapper">
+									<canvas data-id={widget.domId}></canvas>
+								</div>
+							</template>
+						</div>
+					</template>
+				</div>
+			</template>
+
+		</div>
+	</lightning-card>
+</template>

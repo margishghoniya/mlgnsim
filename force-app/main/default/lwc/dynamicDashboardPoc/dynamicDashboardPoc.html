@@ -1,0 +1,86 @@
+<!--
+  @description       :
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             :
+  @last modified on  : 08-07-2026
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+	<lightning-card title="Analytics Dashboard" icon-name="utility:chart">
+
+		<div class="slds-p-horizontal_medium slds-p-bottom_medium">
+
+			<!-- JSON input -->
+			<lightning-input type="text" label="Dashboard JSON" value={jsonInput} onchange={handleJsonInputChange}></lightning-input>
+			<div class="slds-p-top_small slds-p-bottom_medium">
+				<lightning-button variant="brand" label="Generate Dashboard" onclick={handleGenerate}></lightning-button>
+			</div>
+
+			<!-- Loading -->
+			<template if:true={isLoading}>
+				<div class="slds-align_absolute-center slds-p-vertical_medium">
+					<lightning-spinner alternative-text="Generating dashboard" size="small"></lightning-spinner>
+				</div>
+			</template>
+
+			<!-- Error -->
+			<template if:true={hasError}>
+				<div class="slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_error slds-m-bottom_small" role="alert">
+					<span class="slds-assistive-text">Error</span>
+					<h2>{errorMessage}</h2>
+				</div>
+			</template>
+
+			<!-- Card grid: kpi / chart / table, in the order given -->
+			<template if:true={hasCards}>
+				<div class="dashboard-grid">
+					<template for:each={cards} for:item="card">
+						<div key={card.key} class="dashboard-widget">
+							<h3 class="widget-title">{card.title}</h3>
+
+							<template if:true={card.isKpi}>
+								<div class="kpi-value">{card.value}</div>
+							</template>
+
+							<template if:true={card.isChart}>
+								<div class="chart-wrapper">
+									<canvas data-id={card.domId}></canvas>
+								</div>
+							</template>
+
+							<template if:true={card.isTable}>
+								<table class="slds-table slds-table_bordered slds-table_cell-buffer">
+									<thead>
+										<tr class="slds-line-height_reset">
+											<template for:each={card.columnHeaders} for:item="col">
+												<th key={col.key} scope="col">
+													<div class="slds-truncate">{col.label}</div>
+												</th>
+											</template>
+										</tr>
+									</thead>
+									<tbody>
+										<template for:each={card.rows} for:item="row">
+											<tr key={row.key}>
+												<template for:each={row.cells} for:item="cell">
+													<td key={cell.key}>
+														<div class="slds-truncate">{cell.value}</div>
+													</td>
+												</template>
+											</tr>
+										</template>
+									</tbody>
+								</table>
+							</template>
+
+							<template if:true={card.isUnsupported}>
+								<p class="slds-text-color_error">{card.unsupportedMessage}</p>
+							</template>
+						</div>
+					</template>
+				</div>
+			</template>
+
+		</div>
+	</lightning-card>
+</template>
