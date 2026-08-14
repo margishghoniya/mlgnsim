@@ -157,7 +157,7 @@ export default class AiDashboard extends LightningElement {
 				widget.type === 'progress';
 
 			//--------------------------------------------------
-			// List
+			// List 
 			//--------------------------------------------------
 
 			widget.isList =
